@@ -1,0 +1,107 @@
+[
+  {
+    "name": "RTP",
+    "url": "https://www.rtp.pt/noticias/rss",
+    "category": "portugal"
+  },
+  {
+    "name": "Observador",
+    "url": "https://observador.pt/feed/",
+    "category": "portugal"
+  },
+  {
+    "name": "ECO",
+    "url": "https://eco.sapo.pt/feed/",
+    "category": "economia"
+  },
+  {
+    "name": "BBC",
+    "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+    "category": "mundo"
+  },
+  {
+    "name": "The Guardian",
+    "url": "https://www.theguardian.com/world/rss",
+    "category": "mundo"
+  },
+  {
+    "name": "Pplware",
+    "url": "https://pplware.sapo.pt/feed/",
+    "category": "tecnologia"
+  },
+  {
+    "name": "SAPO TEK",
+    "url": "https://tek.sapo.pt/feed/",
+    "category": "tecnologia"
+  },
+  {
+    "name": "Ars Technica",
+    "url": "https://feeds.arstechnica.com/arstechnica/index",
+    "category": "tecnologia"
+  },
+  {
+    "name": "TechCrunch",
+    "url": "https://techcrunch.com/feed/",
+    "category": "tecnologia"
+  },
+  {
+    "name": "The Hacker News",
+    "url": "https://feeds.feedburner.com/TheHackersNews",
+    "category": "ciberseguranca"
+  },
+  {
+    "name": "BleepingComputer",
+    "url": "https://www.bleepingcomputer.com/feed/",
+    "category": "ciberseguranca"
+  },
+  {
+    "name": "NASA",
+    "url": "https://www.nasa.gov/feed/",
+    "category": "ciencia"
+  },
+  {
+    "name": "Rádio Covilhã",
+    "url": "https://radio-covilha.pt/feed/",
+    "category": "local"
+  },
+  {
+    "name": "Rádio Castelo Branco",
+    "url": "https://www.radiocastelobranco.sapo.pt/feed/",
+    "category": "local"
+  },
+  {
+    "name": "Beira Baixa TV",
+    "url": "https://www.beirabaixatv.pt/feed",
+    "category": "local"
+  },
+  {
+    "name": "CISA",
+    "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+    "category": "ciberseguranca"
+  },
+  {
+    "name": "CNCS",
+    "url": "https://www.cncs.gov.pt/pt/feed/",
+    "category": "ciberseguranca"
+  },
+  {
+    "name": "Jornal de Negócios",
+    "url": "https://www.jornaldenegocios.pt/rss",
+    "category": "economia"
+  },
+  {
+    "name": "Reconquista",
+    "url": "https://www.reconquista.pt/PT/rss/rss-reconquista/./xclusiv",
+    "category": "local"
+  },
+  {
+    "name": "Público",
+    "url": "https://feeds.feedburner.com/PublicoRSS",
+    "category": "portugal"
+  },
+  {
+    "name": "ESA",
+    "url": "https://www.esa.int/rssfeed/Our_Activities/Space_Science",
+    "category": "ciencia"
+  }
+]

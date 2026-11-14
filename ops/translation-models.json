@@ -1,0 +1,17 @@
+{
+  "english_portuguese": {
+    "repository": "playto-mt/opus-mt-tc-big-en-pt-ct2",
+    "revision": "86bd3fee2b37851b8eb86747c1078b885f5808fd",
+    "upstream": "Helsinki-NLP/opus-mt-tc-big-en-pt",
+    "license": "CC-BY-4.0",
+    "prefix": ">>por<<"
+  },
+  "multilingual_english": {
+    "repository": "manancode/opus-mt-mul-en-ctranslate2-android",
+    "revision": "9184bc32db5a9a61eac5801d61bc9eb030362251",
+    "upstream": "Helsinki-NLP/opus-mt-mul-en",
+    "license": "Apache-2.0"
+  },
+  "locale": "pt-PT",
+  "adaptation": "Explicit European Portuguese terminology and constructions after local NMT; automatic translation requires checking against preserved original when precision matters."
+}

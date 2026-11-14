@@ -1,0 +1,56 @@
+[
+  {
+    "file": "third-party/licenses/python/ctranslate2@4.9.0/UPSTREAM-LICENSE",
+    "source": "https://raw.githubusercontent.com/OpenNMT/CTranslate2/v4.9.0/LICENSE",
+    "status": "200",
+    "sha256": "54aa79d9fe3c09e67a16dcd95b9e88676405a6ec174efda31036983cf7672ecb"
+  },
+  {
+    "file": "third-party/licenses/python/sentencepiece@0.2.3/UPSTREAM-LICENSE",
+    "source": "https://raw.githubusercontent.com/google/sentencepiece/v0.2.3/LICENSE",
+    "status": "200",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  {
+    "file": "third-party/licenses/npm/lucide-react@0.468.0/FEATHER-MIT-LICENSE",
+    "source": "https://raw.githubusercontent.com/feathericons/feather/v4.29.2/LICENSE",
+    "status": "200",
+    "sha256": "308028e93fcf84972523cdf6e616f73168546b4953895f516d01287f16fe7bee"
+  },
+  {
+    "file": "third-party/licenses/npm/franc-min@6.2.0/UPSTREAM-LICENSE",
+    "source": "https://raw.githubusercontent.com/wooorm/franc/franc-min%406.2.0/license",
+    "status": "200",
+    "sha256": "f5e0c5c44706ddda7ac2f9096f848222f1e0e90f88643955041c2735be84592b"
+  },
+  {
+    "file": "third-party/licenses/npm/abstract-logging@2.0.1/UPSTREAM-LICENSE",
+    "source": "https://raw.githubusercontent.com/jsumners/abstract-logging/v2.0.1/LICENSE",
+    "status": "404"
+  },
+  {
+    "file": "third-party/licenses/common/CC-BY-4.0.txt",
+    "source": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+    "status": "200",
+    "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+  },
+  {
+    "file": "third-party/licenses/common/GPL-3.0.txt",
+    "source": "https://raw.githubusercontent.com/gcc-mirror/gcc/releases/gcc-8.5.0/COPYING3",
+    "status": "200",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  },
+  {
+    "file": "third-party/licenses/common/GCC-exception-3.1.txt",
+    "source": "https://raw.githubusercontent.com/gcc-mirror/gcc/releases/gcc-8.5.0/COPYING.RUNTIME",
+    "status": "200",
+    "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74"
+  },
+  {
+    "file": "third-party/licenses/npm/abstract-logging@2.0.1/README-LINKED-MIT.txt",
+    "source": "https://jsumners.mit-license.org/",
+    "status": "200",
+    "sha256": "475d78ab46fd0b2f2f96bf59f6d3702d1e7c446cedc4fdf0fa113e6b3cfd4293",
+    "scope": "License URL explicitly linked from installed package README; fetched author license page, not a release-tag file."
+  }
+]

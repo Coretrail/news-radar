@@ -1,0 +1,23 @@
+name: Feature request (English)
+description: Suggest a focused improvement or discuss a new integration.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and use case
+      description: Who needs this and what task does it help complete?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: Describe the outcome, alternatives and relevant tradeoffs.
+    validations:
+      required: true
+  - type: textarea
+    id: integration
+    attributes:
+      label: Sources, permissions and licences
+      description: For integrations, link official API/terms documentation and describe required access. Do not share credentials.

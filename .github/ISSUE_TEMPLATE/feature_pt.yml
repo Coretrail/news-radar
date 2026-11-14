@@ -1,0 +1,23 @@
+name: Sugerir uma funcionalidade (Português)
+description: Propor uma melhoria focada ou discutir uma integração.
+title: "[Funcionalidade]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema e utilização
+      description: Quem precisa e que tarefa ajuda a concluir?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Comportamento proposto
+      description: Descreva o resultado, alternativas e compromissos relevantes.
+    validations:
+      required: true
+  - type: textarea
+    id: integration
+    attributes:
+      label: Fontes, permissões e licenças
+      description: Para integrações, ligue a documentação oficial da API/condições e descreva o acesso necessário. Não partilhe credenciais.

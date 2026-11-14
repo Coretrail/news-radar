@@ -1,0 +1,126 @@
+name: news-radar
+x-app-environment: &app-environment
+  NODE_ENV: production
+  APP_URL: ${APP_URL:-http://localhost:8080}
+  APP_TIMEZONE: ${APP_TIMEZONE:-Europe/Lisbon}
+  HOST: 0.0.0.0
+  PORT: 3001
+  PGHOST: db
+  PGPORT: 5432
+  PGDATABASE: ${PGDATABASE:-newsradar}
+  PGUSER: ${PGUSER:-newsradar}
+  PGPASSWORD: ${PGPASSWORD:?Run node scripts/init-env.mjs to generate a database password}
+  TRUST_PROXY: ${PROXY_ADDRESS:-172.30.240.10}
+  LOCAL_CATEGORY_ID: ${LOCAL_CATEGORY_ID:-local}
+  LOCAL_REGION_NAME: ${LOCAL_REGION_NAME:-Notícias locais}
+  LOCAL_REGION_KEYWORDS: ${LOCAL_REGION_KEYWORDS:-}
+  SEED_SOURCES: ${SEED_SOURCES:-minimal}
+  TRANSLATION_ENABLED: ${TRANSLATION_ENABLED:-false}
+x-app: &app
+  build:
+    context: .
+    target: runtime
+  environment: *app-environment
+  restart: unless-stopped
+  read_only: true
+  tmpfs:
+    - /tmp
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  networks: [radar]
+services:
+  db:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: ${PGDATABASE:-newsradar}
+      POSTGRES_USER: radar_admin
+      POSTGRES_PASSWORD: ${PGADMIN_PASSWORD:?Run node scripts/init-env.mjs}
+      APP_DB_USER: ${PGUSER:-newsradar}
+      APP_DB_PASSWORD: ${PGPASSWORD:?Run node scripts/init-env.mjs}
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./deploy/postgres/10-app-user.sh:/docker-entrypoint-initdb.d/10-app-user.sh:ro
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+    networks: [radar]
+  init:
+    <<: *app
+    command: [node, build/initialize.js]
+    restart: on-failure
+    depends_on:
+      db: { condition: service_healthy }
+  api:
+    <<: *app
+    depends_on:
+      init: { condition: service_completed_successfully }
+      db: { condition: service_healthy }
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3001/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+  collector:
+    <<: *app
+    command: [node, build/collector.js]
+    depends_on:
+      init: { condition: service_completed_successfully }
+      db: { condition: service_healthy }
+  web:
+    build:
+      context: .
+      target: web
+    ports:
+      - '${HTTP_BIND:-127.0.0.1}:${HTTP_PORT:-8080}:8080'
+    environment:
+      ALLOWED_NETWORKS: ${ALLOWED_NETWORKS:-all}
+      API_UPSTREAM: api:3001
+      NGINX_LISTEN: 8080
+      NGINX_SERVER_NAME: _
+    depends_on:
+      api: { condition: service_healthy }
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /etc/nginx/conf.d:uid=101,gid=101,mode=0750
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    networks:
+      radar:
+        ipv4_address: ${PROXY_ADDRESS:-172.30.240.10}
+  translation:
+    <<: *app
+    profiles: [translation]
+    build:
+      context: .
+      target: translation
+    command: [node, build/translation-worker.js]
+    environment:
+      <<: *app-environment
+      TRANSLATION_ENABLED: 'true'
+      TRANSLATION_PYTHON: /opt/translation/bin/python
+      TRANSLATION_MODELS: /models
+    volumes:
+      - ./models:/models:ro
+    mem_limit: 1g
+    cpus: 1.5
+    depends_on:
+      init: { condition: service_completed_successfully }
+      db: { condition: service_healthy }
+volumes:
+  database:
+networks:
+  radar:
+    ipam:
+      config:
+        - subnet: ${COMPOSE_SUBNET:-172.30.240.0/24}

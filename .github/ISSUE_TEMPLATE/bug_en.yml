@@ -1,0 +1,32 @@
+name: Bug report (English)
+description: Report a reproducible application or documentation problem.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "For vulnerabilities use SECURITY.md and a verified private channel. Never paste secrets, setup URLs, cookies, private network details or real user data."
+  - type: input
+    id: version
+    attributes:
+      label: Revision and environment
+      description: Commit/release, Docker or native, OS, Node/PostgreSQL versions and browser.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Use a minimal example with synthetic data and example URLs.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted diagnostics
+      description: Relevant error text, commands tried or screenshots with illustrative data only.

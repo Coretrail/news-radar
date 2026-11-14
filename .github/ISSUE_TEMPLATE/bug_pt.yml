@@ -1,0 +1,32 @@
+name: Comunicar um erro (Português)
+description: Comunicar um problema reproduzível da aplicação ou documentação.
+title: "[Erro]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Para vulnerabilidades, consulte SECURITY.md e use um canal privado verificado. Nunca inclua segredos, URLs de configuração, cookies, detalhes de redes privadas ou dados reais."
+  - type: input
+    id: version
+    attributes:
+      label: Revisão e ambiente
+      description: Commit/versão, Docker ou nativo, sistema, versões Node/PostgreSQL e navegador.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Passos de reprodução
+      description: Use um exemplo mínimo com dados sintéticos e URLs de exemplo.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento esperado e observado
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Diagnóstico expurgado
+      description: Erros relevantes, comandos tentados ou capturas apenas com dados ilustrativos.

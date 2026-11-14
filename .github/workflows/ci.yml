@@ -1,0 +1,66 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-bookworm
+        env:
+          POSTGRES_DB: newsradar_test
+          POSTGRES_USER: radar_ci
+          POSTGRES_PASSWORD: ci-local-only
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U radar_ci -d newsradar_test"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      NODE_ENV: test
+      PGHOST: 127.0.0.1
+      PGPORT: 5432
+      PGDATABASE: newsradar_test
+      PGUSER: radar_ci
+      PGPASSWORD: ci-local-only
+      SEED_SOURCES: all
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run migrate && npm run seed
+      - run: npm run test:integration && npm run test:translation
+      - run: sudo apt-get update && sudo apt-get install -y nginx chromium
+      - run: npm run test:access
+      - run: npm run test:screenshots
+      - run: node scripts/audit-public.mjs
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/init-env.mjs
+      - run: docker compose config --quiet
+      - run: docker compose up -d --build --wait --wait-timeout 180
+      - run: curl --fail --retry 10 --retry-delay 3 http://localhost:8080/api/health
+      - run: curl --fail http://localhost:8080/ | grep -q '<title>'
+      - run: docker compose logs --no-color
+        if: failure()
+      - run: docker compose down -v
+        if: always()
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: sh scripts/check-secrets.sh
