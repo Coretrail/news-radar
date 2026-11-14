@@ -6,6 +6,9 @@ As alterações são registadas aqui na preparação de uma versão. A versão d
 
 ## Unreleased / Por lançar
 
+- Validated the default Docker installation from clean source, including real feed collection and persistence through container restart/recreation; clarified readiness and database-password setup.
+- Validada a instalação Docker predefinida a partir de código limpo, com recolha real e persistência após reinício/recriação dos contentores; clarificados o arranque e as palavras-passe da base de dados.
+
 - Initial public template packaging with Docker Compose and native Debian 13/LXC deployment examples.
 - Environment-driven configuration, generic local-region settings and a minimal/optional source catalogue.
 - English and European Portuguese documentation, contribution/security policies and illustrative dashboard screenshots.

@@ -12,5 +12,6 @@
 | [Optional translation](translation.md) | Local models, licences and worker activation |
 | [Development](development.md) | Architecture, local development and verification |
 | [Template publication](release.md) | Owner review, fresh public history and validation boundaries |
+| [Docker validation](validation.md) | Dated results, tested versions and scope limits |
 
 The interface is Portuguese-first. The documentation has English and European Portuguese editions. The screenshots use illustrative demo fixtures, not production records.

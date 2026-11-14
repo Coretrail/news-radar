@@ -2,7 +2,7 @@
 
 [English](../en/docker.md) · [Documentação](README.md)
 
-Use uma cópia nova do repositório e um volume de base de dados novo. Requisitos: Git, Node.js 24+ para o utilitário de ambiente, Docker Engine e plugin Docker Compose. O perfil opcional de tradução também precisa de Python 3 para obter os modelos e de espaço e memória suficientes para os executar.
+Use uma cópia nova do repositório e um volume de base de dados novo. Requisitos: Git, Node.js 24+ para o utilitário de ambiente, Docker Engine e plugin Docker Compose (2.20 ou posterior). O perfil opcional de tradução também precisa de Python 3 para obter os modelos e de espaço e memória suficientes para os executar.
 
 ## Primeira execução
 
@@ -16,7 +16,7 @@ Reveja `.env`. Mantenha `APP_URL=http://localhost:8080` para a instalação loca
 
 ```sh
 docker compose config --quiet
-docker compose up -d --build
+docker compose up -d --build --wait --wait-timeout 180
 docker compose ps
 docker compose logs --tail=100 init api collector web
 ```
@@ -56,7 +56,7 @@ docker compose up -d
 Antes de atualizar, faça e verifique uma cópia de segurança, leia `CHANGELOG.md`, reveja novas opções em `.env.example` e obtenha a versão pretendida. Depois reconstrua:
 
 ```sh
-docker compose up -d --build
+docker compose up -d --build --wait --wait-timeout 180
 docker compose ps
 ```
 
@@ -87,3 +87,5 @@ O exemplo pressupõe uma base de dados vazia, sem tabelas já criadas pela inici
 ## Resolução de problemas
 
 Consulte `docker compose ps`, o estado de saída de `init` e os registos dos serviços. Alterar `PGPASSWORD` ou `PGADMIN_PASSWORD` em `.env` não muda a palavra-passe do respetivo utilizador num volume PostgreSQL existente: atualize esse utilizador na administração PostgreSQL e recrie os serviços dependentes. O script que cria o utilizador da aplicação só executa com um diretório de dados vazio. Evite eliminar volumes para resolver erros de ligação. Para traduções, consulte o [guia de tradução](translation.md).
+
+[Resultados e limites do ensaio do perfil predefinido](validation.md).

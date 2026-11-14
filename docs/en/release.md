@@ -17,7 +17,7 @@ This public export is prepared for owner review. Publication, pushing to GitHub,
 
 Local preparation exercised the unit/build checks, PostgreSQL integration checks and fresh compiled initialization/migrations using a non-superuser application role. The dependency audit reported no known advisories at the time checked. These are observations for the reviewed revision and environment; record fresh results when preparing a later release.
 
-Docker Compose configuration was validated. **Container image builds and stack startup were not exercised in this preparation environment**, because no Docker engine was available and none was installed on the existing host. The included CI workflow is prepared to build/start the stack and check HTTP responses on an isolated GitHub runner after approved publication. A workflow file is not evidence that a GitHub run has passed. Review its actual results before describing that path as verified.
+A subsequent isolated Docker run built and started the default stack from a clean source archive using the README commands and generated `.env` defaults. Frontend, backend, PostgreSQL, actual BBC/Hacker News collection, browser interactions and persistence across container restart/recreation passed. See the [dated validation record and limitations](validation.md). No Docker engine was installed in the native production environment. The optional translation profile and GitHub Actions were not executed in that run; the existence of a workflow does not establish a passing GitHub result.
 
 ## After approved publication
 

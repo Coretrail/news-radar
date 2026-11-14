@@ -17,7 +17,7 @@ Esta exportação pública está preparada para revisão pelo proprietário. Pub
 
 A preparação local executou verificações unitárias/compilação, integração PostgreSQL e inicialização/migrações compiladas numa base nova com um utilizador da aplicação sem privilégios de superutilizador. A auditoria de dependências não identificou avisos conhecidos no momento da verificação. São observações da revisão e ambiente analisados; registe resultados novos ao preparar uma versão posterior.
 
-A configuração Docker Compose foi validada. **Não se executaram a construção de imagens nem o arranque da instalação em contentores neste ambiente**, porque não existia um motor Docker e não se instalou um no servidor existente. O workflow CI incluído está preparado para construir/iniciar a instalação e verificar respostas HTTP num runner GitHub isolado após publicação aprovada. Existir um workflow não prova que uma execução GitHub tenha passado. Reveja os resultados reais antes de apresentar esse percurso como verificado.
+Um ensaio Docker isolado posterior construiu e iniciou a instalação predefinida a partir de um arquivo limpo, usando os comandos do README e as predefinições do `.env` gerado. Passaram o frontend, backend, PostgreSQL, recolha real BBC/Hacker News, interações no navegador e persistência após reinício/recriação dos contentores. Consulte o [registo datado e os limites da validação](validation.md). Não se instalou um motor Docker no ambiente nativo de produção. O perfil opcional de tradução e o GitHub Actions não foram executados nesse ensaio; existir um workflow não prova que uma execução GitHub tenha passado.
 
 ## Depois da publicação aprovada
 

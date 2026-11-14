@@ -2,7 +2,7 @@
 
 [Português](../pt/configuration.md) · [Documentation](README.md)
 
-Run `node scripts/init-env.mjs` to create `.env` from `.env.example`. It generates independent application and database-administrator passwords and leaves an existing `.env` unchanged. Keep the real file private. The example file is the authoritative list of supported settings; use it when upgrading.
+Run `node scripts/init-env.mjs` to create `.env` from `.env.example`. It generates independent passwords for the PostgreSQL application role and database administrator and leaves an existing `.env` unchanged. Website administrator credentials are chosen separately during setup. Keep the real file private. The example file is the authoritative list of supported settings; use it when upgrading.
 
 | Setting | Meaning |
 | --- | --- |

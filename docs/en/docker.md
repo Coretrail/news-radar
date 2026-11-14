@@ -2,7 +2,7 @@
 
 [Português](../pt/docker.md) · [Documentation](README.md)
 
-Use a new checkout and a fresh database volume. Requirements: Git, Node.js 24+ for the environment helper, Docker Engine and the Docker Compose plugin. The optional translation profile also needs Python 3 for model provisioning and enough storage and memory for its models.
+Use a new checkout and a fresh database volume. Requirements: Git, Node.js 24+ for the environment helper, Docker Engine and the Docker Compose plugin (2.20 or newer). The optional translation profile also needs Python 3 for model provisioning and enough storage and memory for its models.
 
 ## First start
 
@@ -16,7 +16,7 @@ Review `.env`. Keep `APP_URL=http://localhost:8080` for the default local deploy
 
 ```sh
 docker compose config --quiet
-docker compose up -d --build
+docker compose up -d --build --wait --wait-timeout 180
 docker compose ps
 docker compose logs --tail=100 init api collector web
 ```
@@ -56,7 +56,7 @@ docker compose up -d
 Before an update, take and verify a backup, read `CHANGELOG.md`, review `.env.example` for new settings, and obtain the desired release in your checkout. Then rebuild:
 
 ```sh
-docker compose up -d --build
+docker compose up -d --build --wait --wait-timeout 180
 docker compose ps
 ```
 
@@ -87,3 +87,5 @@ This example assumes the target database is empty and initialization has not cre
 ## Troubleshooting
 
 Check `docker compose ps`, the `init` exit status and service logs. Changing `PGPASSWORD` or `PGADMIN_PASSWORD` in `.env` does not change the corresponding role password in an existing PostgreSQL volume: update that role through PostgreSQL administration and then recreate dependent services. The bootstrap application-role script runs only for an empty PostgreSQL data directory. Avoid removing volumes to solve connection errors. For translations, follow the separate [translation guide](translation.md).
+
+[Default-profile validation results and limits](validation.md).

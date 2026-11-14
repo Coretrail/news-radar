@@ -2,7 +2,7 @@
 
 [English](../en/configuration.md) · [Documentação](README.md)
 
-Execute `node scripts/init-env.mjs` para criar `.env` a partir de `.env.example`. O utilitário gera palavras-passe independentes para a aplicação e a administração PostgreSQL e mantém um `.env` existente. Guarde o ficheiro real em privado. O exemplo é a lista de referência das opções suportadas; consulte-o ao atualizar.
+Execute `node scripts/init-env.mjs` para criar `.env` a partir de `.env.example`. O utilitário gera palavras-passe independentes para o utilizador PostgreSQL da aplicação e a administração PostgreSQL e mantém um `.env` existente. As credenciais do administrador do website são escolhidas separadamente na configuração inicial. Guarde o ficheiro real em privado. O exemplo é a lista de referência das opções suportadas; consulte-o ao atualizar.
 
 | Opção | Significado |
 | --- | --- |

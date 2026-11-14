@@ -6,7 +6,7 @@ Um painel de notícias para alojamento próprio, que reúne feeds, temas e conta
 
 ![Painel News Radar em computador com notícias de demonstração](docs/screenshots/dashboard-desktop.png)
 
-*Conteúdo de demonstração ilustrativo; as capturas não representam um serviço de notícias em direto nem o apoio dos editores.*
+*As capturas mostram a interface real com conteúdo de demonstração ilustrativo. Os indicadores em direto, totais de notícias e contagens de fontes são ilustrativos, não comprovam testes de recolha nem a disponibilidade das fontes. Não representam um serviço de notícias em direto nem o apoio dos editores.*
 
 ## Funcionalidades
 
@@ -20,16 +20,18 @@ A documentação existe em inglês e português. A interface da aplicação é a
 
 ## Começar com Docker Compose
 
-Precisa de Git, Node.js 24 ou superior para o utilitário de configuração e Docker Engine com o plugin Compose. Crie o seu repositório com a opção **Use this template** do GitHub e clone-o:
+Precisa de Git, Node.js 24 ou superior para o utilitário de configuração e Docker Engine com o plugin Compose (versão 2.20 ou superior). Para começar, clone o repositório original:
 
 ```sh
-git clone <YOUR-REPOSITORY-URL> news-radar
+git clone https://github.com/Coretrail/news-radar.git news-radar
 cd news-radar
 node scripts/init-env.mjs
-docker compose up -d --build
+docker compose up -d --build --wait --wait-timeout 180
 ```
 
-O utilitário cria `.env` com palavras-passe aleatórias independentes para a aplicação e a administração PostgreSQL e nunca substitui um ficheiro existente. Reveja `.env` antes de iniciar, sobretudo a seleção de fontes e o acesso de rede. Abra **http://localhost:8080** quando a inicialização terminar. A porta publicada fica associada a `127.0.0.1` por predefinição.
+Depois de o proprietário ativar a opção **Template repository** do GitHub, também pode escolher **Use this template** e clonar o endereço do seu próprio repositório.
+
+O utilitário cria `.env` com palavras-passe aleatórias independentes para o utilizador PostgreSQL da aplicação e para o administrador da base de dados e nunca substitui um ficheiro existente. As credenciais de administração do painel são escolhidas mais tarde durante a configuração. Reveja `.env` antes de iniciar, sobretudo a seleção de fontes e o acesso de rede. O comando de arranque espera até 180 segundos pelos serviços; é normal a tarefa `init` de execução única terminar com sucesso. Se o arranque falhar, consulte `docker compose ps` e `docker compose logs --tail=100 init api collector web`. Abra **http://localhost:8080** quando o arranque terminar com sucesso. A porta publicada fica associada a `127.0.0.1` por predefinição. É normal o painel estar vazio enquanto a recolha começa, com fontes desativadas ou se os fornecedores estiverem indisponíveis.
 
 Para criar a conta de administração:
 

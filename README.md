@@ -6,7 +6,7 @@ A self-hosted news dashboard for following feeds, topics and selected social acc
 
 ![News Radar desktop dashboard with illustrative demo stories](docs/screenshots/dashboard-desktop.png)
 
-*Illustrative demo content; these screenshots are not a live news service or publisher endorsement.*
+*Screenshots show the actual interface with illustrative demo content. Live indicators, story totals and source counts are illustrative, not evidence of tested collection or source availability. They do not represent a live news service or publisher endorsement.*
 
 ## What it does
 
@@ -20,16 +20,18 @@ The documentation is available in English and Portuguese. The application interf
 
 ## Start with Docker Compose
 
-You need Git, Node.js 24 or newer for the environment helper, and Docker Engine with the Compose plugin. Create your own repository with GitHub's **Use this template** action, then clone it:
+You need Git, Node.js 24 or newer for the environment helper, and Docker Engine with the Compose plugin (version 2.20 or newer). Clone the upstream repository to start:
 
 ```sh
-git clone <YOUR-REPOSITORY-URL> news-radar
+git clone https://github.com/Coretrail/news-radar.git news-radar
 cd news-radar
 node scripts/init-env.mjs
-docker compose up -d --build
+docker compose up -d --build --wait --wait-timeout 180
 ```
 
-The helper creates `.env` with independently generated application and database-administrator passwords and never overwrites an existing file. Review `.env` before starting, particularly source selection and network access. Open **http://localhost:8080** after initialization finishes. The published port binds to `127.0.0.1` by default.
+Once the owner enables GitHub's **Template repository** setting, you can also choose **Use this template** and clone your own repository URL instead.
+
+The helper creates `.env` with independently generated passwords for the PostgreSQL application role and database administrator and never overwrites an existing file. Website administrator credentials are chosen later during setup. Review `.env` before starting, particularly source selection and network access. The startup command waits up to 180 seconds for the services to become ready; the one-shot `init` job is expected to exit successfully. If startup fails, inspect `docker compose ps` and `docker compose logs --tail=100 init api collector web`. Open **http://localhost:8080** after startup succeeds. The published port binds to `127.0.0.1` by default. An empty dashboard can be normal while collection starts, when sources are disabled or if upstream providers are unavailable.
 
 To create your administrator account:
 
